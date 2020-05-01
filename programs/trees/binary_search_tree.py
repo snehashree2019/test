@@ -1,4 +1,4 @@
-## create a node class 
+## create a node class
 class Node:
     def __init__(self,data):
         self.data = data
@@ -23,19 +23,43 @@ class Node:
             self.data = data
 
 ## function to print tree, in-order traversal
-    def print_tree(self):
+    def print_in_order(self):
           if self.left:
-              self.left.print_tree()
+              self.left.print_in_order()
           print(self.data)
           if self.right:
-              self.right.print_tree()
+              self.right.print_in_order()
+
+## function to print_tree, pre-order traversal
+    def print_pre_order(self):
+        if self.data:
+            print(self.data)
+            if self.left:
+                self.left.print_pre_order()
+            if self.right:
+                self.right.print_pre_order()
+
+#function to print_tree , post-order traversal
+    def print_post_order(self):
+        if self.data:
+            if self.left:
+                self.left.print_post_order()
+            if self.right:
+                self.right.print_post_order()
+
+        print(self.data)
 
 
-root = Node(12)
-##root.print_tree()
-root.insert_node(6)
-root.insert_node(14)
-root.insert_node(3)
-root.insert_node(1)
-root.insert_node(20)
-root.print_tree()
+#function to search node, divide & conquer method
+    def search_node(self,num):
+        if self.data:
+            if self.data == num:
+                print("number found")
+            else:
+                if num < self.data and self.left:
+                    self.left.search_node(num)
+
+                if num > self.data and self.right:
+                    self.right.search_node(num)
+        else:
+            print("Empty tree")
